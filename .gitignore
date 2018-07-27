@@ -1,0 +1,10 @@
+*.py[cod]
+/static/
+/media/
+/htmlcov/
+.idea/
+__pycache__
+emvenv/
+venv/
+env/
+.coverage
