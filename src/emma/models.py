@@ -3,24 +3,30 @@ from django.utils.translation import gettext as _
 
 
 class Item(models.Model):
-    vendor_code = models.CharField(
+    id = models.IntegerField(primary_key=True, unique=False, blank=True)
+
+    gtin = models.CharField(
         max_length=100,
-        unique=True,
+        blank=True,
         verbose_name=_('Vendor code')
     )
 
     title = models.CharField(
         max_length=100,
-        unique=True,
+        blank=True,
         verbose_name=_('Title')
     )
 
-    price = models.IntegerField()
+    price = models.IntegerField(blank=True)
 
-    gross_weight = models.DecimalField()
+    retail_price = models.IntegerField(null=True, blank=True)
+
+    gross_weight = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
 
     created = models.DateTimeField(
         auto_now=True,
+        null=True,
+        blank=True,
         verbose_name=_('Created at')
     )
 
@@ -30,9 +36,10 @@ class Item(models.Model):
         verbose_name=_('Updated at')
     )
 
-    category = models.CharField(
+    product_type = models.CharField(
         max_length=100,
-        unique=True,
+        null=True,
+        blank=True,
         verbose_name=_('Category')
     )
 
